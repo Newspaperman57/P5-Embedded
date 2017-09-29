@@ -36,7 +36,7 @@ oneG = (2**15)/16
 oneRotation = (2**15)/(2000/360)
 
 """File to read"""
-file = open("../data/ibsenspinner.csv", "r").read().split('\n')
+file = open("../data/mortensKick2.csv", "r").read().split('\n')
 
 startTicks = pygame.time.get_ticks();
 
@@ -44,7 +44,7 @@ startTicks = pygame.time.get_ticks();
 simTime = 0
 line = 0
 
-os.system("(vlc " + "../data/ibsenspinner.mov" + "& )")
+"""os.system("(vlc " + "../data/ibsenspinner.mov" + "& )")"""
 while 1:
     time = pygame.time.get_ticks() - startTicks
     background.fill(0x000000)
@@ -78,8 +78,8 @@ while 1:
     pygame.draw.line(background, 0x00FFFF, (500, 100), (500+(acc.z*100), 100), 1)
 
     pygame.draw.line(background, 0x00FFFF, (100, 300), (100+(acc.rx*100), 300), 1)
-    pygame.draw.line(background, 0x00FFFF, (300, 300), (300+(acc.ry*100), 300), 1)
-    pygame.draw.line(background, 0x00FFFF, (500, 300), (500+(acc.rz*100), 300), 1)
+    pygame.draw.line(background, 0x00FFFF, (300, 320), (300+(acc.ry*100), 320), 1)
+    pygame.draw.line(background, 0x00FFFF, (500, 340), (500+(acc.rz*100), 340), 1)
 
     pygame.display.flip()
     screen.blit(background, (0, 0))   
