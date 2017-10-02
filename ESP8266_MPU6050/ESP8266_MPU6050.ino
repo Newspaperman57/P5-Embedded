@@ -1,9 +1,11 @@
-#include "I2Cdev.h"
-#include "MPU6050.h"
-#include "Wire.h"
+#include <I2Cdev.h>
+// #include "MPU6050.h"
+#include <Wire.h>
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
+
+#define MPU_ADDR 0x68
 
 ESP8266WiFiMulti WiFiMulti;
 
@@ -11,40 +13,43 @@ const char* ssid = "Tardis";
 const char* password = "geronimo";
 bool state = true;
 
-MPU6050 accelgyro(0x68);
-
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
-
-//#define OUTPUT_READABLE_ACCELGYRO // Slower, don't use this
-#define OUTPUT_BINARY_ACCELGYRO
-
 int b = 100; // Number of datapoints to read before sending. Change size of array on next line accordingly
 int16_t data[100*7];
 char str[64];
 
+void setup_mpu6050() {
+  Wire.begin(5,4);
+  Wire.beginTransmission(MPU_ADDR);
+  Wire.write(0x6B);  // PWR_MGMT_1 register
+  Wire.write(0);     // set to zero (wakes up the MPU-6050)
+  Wire.endTransmission(true);  
+}
+
+void mpu6050_get_data(
+  int16_t* ax, int16_t* ay, int16_t* az, 
+  int16_t* rx, int16_t* ry, int16_t* rz) {
+  Wire.beginTransmission(MPU_ADDR);
+  Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
+  Wire.endTransmission(false);
+  Wire.requestFrom(MPU_ADDR,14,true);  // request a total of 14 registers
+  *ax=Wire.read()<<8|Wire.read();  // 0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)    
+  *ay=Wire.read()<<8|Wire.read();  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
+  *az=Wire.read()<<8|Wire.read();  // 0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)
+  Wire.read()<<8|Wire.read();  // 0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)
+  *rx=Wire.read()<<8|Wire.read();  // 0x43 (GYRO_XOUT_H) & 0x44 (GYRO_XOUT_L)
+  *ry=Wire.read()<<8|Wire.read();  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
+  *rz=Wire.read()<<8|Wire.read();  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
+}
+
 void setup() {
     // join I2C bus
-    Wire.begin(5,4);
+    setup_mpu6050();
 
     // initialize serial communication for debugging purposes
     Serial.begin(115200);
 
     // initialize device
     Serial.println("Initializing I2C devices...");
-    accelgyro.initialize();
-
-    // verify connection
-    Serial.println("Testing device connections...");
-    Serial.print(accelgyro.testConnection() ? "1. MPU6050 connection successful" : "1. MPU6050 connection failed");
-    
-    while(accelgyro.testConnection() == false) { // If MPU is not connected, wait for it
-        delay(100);
-        Serial.print(".");
-    }
-
-    accelgyro.setFullScaleAccelRange(MPU6050_ACCEL_FS_16); // Set acc scale to max (16G)
-    accelgyro.setFullScaleGyroRange(MPU6050_GYRO_FS_2000); // Set gyro scale to max (2000 degrees per sec)
     
     // Connect to wifi network
     WiFiMulti.addAP(ssid, password);
@@ -92,7 +97,8 @@ void loop() {
             mil = millis();
             data[index++] = mil -lastMillis;
             lastMillis = mil;
-            accelgyro.getMotion6(&data[index++], &data[index++], &data[index++], &data[index++], &data[index++], &data[index++]);
+            mpu6050_get_data(&data[index++], &data[index++], &data[index++], &data[index++], &data[index++], &data[index++]);
+            // accelgyro.getMotion6(&data[index++], &data[index++], &data[index++], &data[index++], &data[index++], &data[index++]);
         }
         // If client doesn't respond to data, stop sending since the connection broke
         if(client.write((uint8_t*)data, sizeof(int16_t)*b*7) == 0)
