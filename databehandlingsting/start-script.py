@@ -60,7 +60,7 @@ background.fill((0,0,0))
 oneRotation = (2**15)/(2000/360)
 
 """File to read"""
-file = open("../data/9-29/grunbergvsmorten.csv", "r").read().split('\n')
+file = open("../data/mortenKick.csv", "r").read().split('\n')
 
 # time since 1970, used to make animation run in real-time instead of all at once (difference between startTicks before running and while running)
 startTicks = pygame.time.get_ticks();
@@ -80,8 +80,9 @@ for line in file:
     data = line.split(';')
     if data[0] != "time" and data[0] != "":
         acc.append(AccelerometerData(float(data[0]), float(data[0+1]), float(data[1+1]), float(data[2+1]), float(data[3+1]), float(data[4+1]), float(data[5+1])))
-graph = graph.Graph(acc, 400, 200, 2, 1/float(8))
-
+graph = graph.Graph(acc, 1200, 600, 20, 1/float(16))
+ctrlDown = False
+graphPosx = 100 
 while 1:
     time = pygame.time.get_ticks() - startTicks
     background.fill(0x000000)
@@ -91,14 +92,33 @@ while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
             sys.exit()
-        #elif event.type == KEYDOWN: 
-            #if (event.key == K_LEFT):
-                #xOffset -= 100
-            #elif (event.key == K_RIGHT):
-                #xOffset += 100
-
+        elif event.type == MOUSEBUTTONDOWN:
+            if event.button == 5: # Scrolling down 
+                if ctrlDown:
+                    graph.SetScale(0.9, event.pos[0]-graphPosx)
+                else:
+                    graph.SetDataHeight(0.9)
+            elif event.button == 4: # Scrolling !down
+                if ctrlDown:
+                    graph.SetScale(1.1, event.pos[0]-graphPosx)
+                else:
+                    graph.SetDataHeight(1.1)
+        elif event.type == KEYDOWN: 
+            if event.key == K_LEFT:
+                graph.SetDataOffset(-10)
+            elif event.key == K_RIGHT:
+                graph.SetDataOffset(10)
+            elif event.key == K_LCTRL:
+                ctrlDown = True
+        elif event.type == KEYUP: 
+            if event.key == K_LCTRL:
+                ctrlDown = False
+        elif event.type == pygame.MOUSEMOTION:
+            if event.buttons[0]:
+                print graph.scale
+                graph.SetDataOffset(-event.rel[0]/graph.scale)
     
-    graph.Render(background, 100, 100)
+    graph.Render(background, graphPosx, 100)
 
     screen.blit(background, (0, 0))   
     pygame.display.flip()
