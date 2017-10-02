@@ -1,4 +1,4 @@
-import pygame, sys, math, mygraph
+import pygame, sys, math, graph
 from pygame.locals import *
 from datetime import datetime
 
@@ -60,7 +60,7 @@ background.fill((0,0,0))
 oneRotation = (2**15)/(2000/360)
 
 """File to read"""
-file = open("../data/mortenKick.csv", "r").read().split('\n')
+file = open("../data/9-29/grunbergvsmorten.csv", "r").read().split('\n')
 
 # time since 1970, used to make animation run in real-time instead of all at once (difference between startTicks before running and while running)
 startTicks = pygame.time.get_ticks();
@@ -80,9 +80,8 @@ for line in file:
     data = line.split(';')
     if data[0] != "time" and data[0] != "":
         acc.append(AccelerometerData(float(data[0]), float(data[0+1]), float(data[1+1]), float(data[2+1]), float(data[3+1]), float(data[4+1]), float(data[5+1])))
-graph = mygraph.Graph(acc, 400, 200, 200, 1/float(8))
+graph = graph.Graph(acc, 400, 200, 2, 1/float(8))
 
-print "time;x;y;z;rx,ry;rz"
 while 1:
     time = pygame.time.get_ticks() - startTicks
     background.fill(0x000000)
@@ -99,7 +98,7 @@ while 1:
                 #xOffset += 100
 
     
-    graph.Render(background, 0, 0, 0)
+    graph.Render(background, 100, 100)
 
     screen.blit(background, (0, 0))   
     pygame.display.flip()
