@@ -1,4 +1,5 @@
 import pygame
+import math
 
 class Graph:
     def __init__(self, graphData, w, h, scale=1, dataHeight=1, dataOffset=0):
@@ -14,6 +15,7 @@ class Graph:
         self.dataHeight /= dataheight
 
     def SetScale(self, scale, relx):
+        print self.scale
         drawnPoints = (self.lastDrawn-self.dataOffset)
         self.dataOffset -= ((float(relx)/self.w)/scale)*(drawnPoints-(drawnPoints*scale))
         self.scale *= scale
@@ -33,15 +35,24 @@ class Graph:
             , dataYZero)
             , 2)
 
+
         while dataIterator < len(self.__graphData) and (self.__graphData[dataIterator].time-startTime)*self.scale < self.w:
-            """Zero-line"""
+            # draw a dot for each time we measure data. These dots will look like a line at y=0
             pygame.draw.line(background, 0xE6E6E7, (
                   (self.__graphData[dataIterator].time-startTime)*self.scale+x    
                 , dataYZero)                                                                               
                 , ((self.__graphData[dataIterator].time-startTime)*self.scale+x
                 , dataYZero)
                 , 2)
-            """Data-line"""
+
+            # print numbers indicating time at given points. Less points are printed when more points are viewed (to avoid overlapping text) by multiplying by the inverse of scale
+            iscale = self.scale**(-1)*100
+            if dataIterator % max(math.floor(iscale), 1) == 0:
+                myfont = pygame.font.SysFont("DejaVu Sans Mono", 15)
+                label = myfont.render(("%d" % (self.__graphData[dataIterator].time)), 1, (255, 255, 0))
+                background.blit(label, ((self.__graphData[dataIterator].time-startTime)*self.scale+x, dataYZero))
+
+            # variables to print dots at the correct time and position corresponding to time and z-values from data.
             dataY = int(self.__graphData[dataIterator].z/self.dataHeight*(self.h/2))
             if dataY > self.h/2:
                 dataY = self.h/2
@@ -54,17 +65,13 @@ class Graph:
             if lastDataY < -self.h/2:
                 lastDataY = -self.h/2
 
+            # draw a line from last point to current point, creating a graph
             pygame.draw.line(background, 0x35A4E8, 
                 ((self.__graphData[dataIterator-1].time - startTime)*self.scale+x,
                   lastDataY+dataYZero) ,
                 ((self.__graphData[dataIterator].time - startTime)*self.scale+x, 
                   dataY+dataYZero) , 1)
-            """small box at data-point"""
-            # pygame.draw.line(background, 0xFF00FF, 
-            #     ((self.__graphData[dataIterator-1].time-startTime)*self.scale+x    , 
-            #       int(self.__graphData[dataIterator-1].z/self.dataHeight*(self.h/2))+dataYZero)   , 
-            #     ((self.__graphData[dataIterator-1].time-startTime)*self.scale+x, 
-            #       int(self.__graphData[dataIterator-1].z/self.dataHeight*(self.h/2))+dataYZero) , 4)
+
             dataIterator += 1
         self.lastDrawn = dataIterator
 

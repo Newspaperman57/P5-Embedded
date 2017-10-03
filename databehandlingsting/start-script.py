@@ -56,9 +56,6 @@ background = pygame.Surface(screen.get_size())
 background = background.convert()
 background.fill((0,0,0))
 
-"""How much is one rotation per second"""
-oneRotation = (2**15)/(2000/360)
-
 """File to read"""
 file = open("../data/mortenKick.csv", "r").read().split('\n')
 
@@ -71,9 +68,6 @@ line = 0
 # last node is the previous node's end position, which will be used as start position for the next
 lastNode = (0, 0)
 
-sampleRate = 6
-accaverage = AccelerometerData()
-
 acc = []
 
 for line in file:
@@ -83,12 +77,11 @@ for line in file:
 graph = graph.Graph(acc, 1200, 600, 20, 1/float(16))
 ctrlDown = False
 graphPosx = 100 
+
 while 1:
     time = pygame.time.get_ticks() - startTicks
     background.fill(0x000000)
-    #acc = AccelerometerData()
 
-    #while time > simTime:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: 
             sys.exit()
@@ -115,7 +108,6 @@ while 1:
                 ctrlDown = False
         elif event.type == pygame.MOUSEMOTION:
             if event.buttons[0]:
-                print graph.scale
                 graph.SetDataOffset(-event.rel[0]/graph.scale)
     
     graph.Render(background, graphPosx, 100)
