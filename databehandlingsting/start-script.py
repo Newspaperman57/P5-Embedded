@@ -49,7 +49,7 @@ def average(i, j):
 
 pygame.init()
 
-screen = pygame.display.set_mode((1600, 900))
+screen = pygame.display.set_mode((1920, 1080))
 
 """Create the background"""
 background = pygame.Surface(screen.get_size())
@@ -74,7 +74,7 @@ for line in file:
     data = line.split(';')
     if data[0] != "time" and data[0] != "":
         acc.append(AccelerometerData(float(data[0]), float(data[0+1]), float(data[1+1]), float(data[2+1]), float(data[3+1]), float(data[4+1]), float(data[5+1])))
-graph = graph.Graph(acc, 1200, 600, 20, 1/float(16))
+graph = graph.Graph(acc, 1920, 1080, 20, 1/float(16))
 ctrlDown = False
 graphPosx = 100 
 
@@ -110,7 +110,8 @@ while 1:
             if event.buttons[0]:
                 graph.SetDataOffset(-event.rel[0]/graph.scale)
     
-    graph.Render(background, graphPosx, 100)
+    #graph.Render(background, graphPosx, 100)
+    graph.Render(background, 0, 0)
 
     screen.blit(background, (0, 0))   
     pygame.display.flip()

@@ -15,7 +15,6 @@ class Graph:
         self.dataHeight /= dataheight
 
     def SetScale(self, scale, relx):
-        print self.scale
         drawnPoints = (self.lastDrawn-self.dataOffset)
         self.dataOffset -= ((float(relx)/self.w)/scale)*(drawnPoints-(drawnPoints*scale))
         self.scale *= scale
@@ -52,7 +51,7 @@ class Graph:
                 label = myfont.render(("%d" % (self.__graphData[dataIterator].time)), 1, (255, 255, 0))
                 background.blit(label, ((self.__graphData[dataIterator].time-startTime)*self.scale+x, dataYZero))
 
-            # variables to print dots at the correct time and position corresponding to time and z-values from data.
+            # variables to print dots at the correct time and position corresponding to time and z-values from data. CHANGE RZ TO Z
             dataY = int(self.__graphData[dataIterator].z/self.dataHeight*(self.h/2))
             if dataY > self.h/2:
                 dataY = self.h/2
@@ -70,7 +69,7 @@ class Graph:
                 ((self.__graphData[dataIterator-1].time - startTime)*self.scale+x,
                   lastDataY+dataYZero) ,
                 ((self.__graphData[dataIterator].time - startTime)*self.scale+x, 
-                  dataY+dataYZero) , 1)
+                  dataY+dataYZero) , 2)
 
             dataIterator += 1
         self.lastDrawn = dataIterator
