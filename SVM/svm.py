@@ -1,8 +1,6 @@
+import numpy as np
+from sklearn import svm
 from train import train
-from process_data import process_data
-from clf import Classifier
-from accuracy import calculate_accuracy
-from save_model import save_model
 
 result = train([("grundberg2.csv", [0, 1]), ("morten2.csv", [1, 0])])
 
@@ -14,14 +12,12 @@ tester3 = process_data("mortenvsgrunberg.csv")[0]
 
 tester4 = process_data("grunbergvsmorten.csv")[0]
 
-clf = Classifier()
+clf = svm.SVC()
+clf.fit(result[0], result[1]);
 
 
 
-
-
-
-clf = clf.learn(result[0], result[1])
+#http://scikit-learn.org/stable/modules/svm.html
 
 # should be 1 for morten
 pred1 = clf.predict_proba(tester)
