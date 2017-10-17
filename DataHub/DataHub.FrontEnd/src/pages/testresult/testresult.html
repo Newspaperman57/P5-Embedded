@@ -10,22 +10,26 @@
             <div class="box">
                 <div *ngFor="let result of results">
                     <div class="datalist-row">
-                    <div style="display: inline-block; cursor: pointer; width:50%;">
-                    Test {{ result.Id }}
+                    <div style="display: inline-block; cursor: pointer; width:50%;" (click)="result.Expanded = !result.Expanded">
+                        <img style="margin-right: 5px;float:left;" *ngIf="!result.Expanded" src="/assets/gfx/toggle-icon.png" class="delete-icon">
+                        <img style="margin-right: 5px;float:left;" *ngIf="result.Expanded" src="/assets/gfx/toggle-expanded-icon.png" class="delete-icon">
+                        Test {{ result.Id }}
                     </div>
                     <div style="float:right;">
                         {{ result.Correct }} / {{ result.DataSetResults.length }}
                         <img style="margin-left: 5px;" src="/assets/gfx/correct-icon.png" class="delete-icon">
                     </div>
-                    <div class="box" style="margin-top: 10px;">
+                    <div class="box" *ngIf="result.Expanded" style="margin-top: 10px;">
                         <div *ngFor="let datasetResult of result.DataSetResults">
                             <div class="datalist-row">
-                                <div style="display: inline-block; cursor: pointer; width:50%;">
-                                {{ datasetResult.DataSetName }}
+                                <div (click)="datasetResult.Expanded = !datasetResult.Expanded" style="display: inline-block; cursor: pointer; width:50%;">
+                                    <img style="margin-right: 5px;float:left;" *ngIf="!datasetResult.Expanded" src="/assets/gfx/toggle-icon.png" class="delete-icon">
+                                    <img style="margin-right: 5px;float:left;" *ngIf="datasetResult.Expanded" src="/assets/gfx/toggle-expanded-icon.png" class="delete-icon">
+                                    {{ datasetResult.DataSetName }}
                                 </div>
                                 <img *ngIf="datasetResult.IsCorrect" src="/assets/gfx/correct-icon.png" class="delete-icon">
                                 <img *ngIf="datasetResult.IsIncorrect" src="/assets/gfx/incorrect-icon.png" class="delete-icon">
-                                <div class="box"  style="margin-top: 10px;">
+                                <div class="box" *ngIf="datasetResult.Expanded" style="margin-top: 10px;">
                                     <div *ngFor="let classification of datasetResult.Classifications">
                                         <div class="datalist-row">
                                         <div style="display: inline-block; cursor: pointer; width:50%;">

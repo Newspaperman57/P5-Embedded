@@ -37,7 +37,7 @@ export class TestResult {
                                         }
                                     }
                                     let classification = data['Data'][r]['DataSetResults'][d]['Classifications'][maxConfidenceIndex];
-                                    console.log(classification);
+                                    data['Data'][r]['DataSetResults'][d]['Expanded'] = false;
                                     if(data['Data'][r]['DataSetResults'][d]['LabelIds'].indexOf(classification['LabelId']) != -1) {
                                         classification['IsCorrect'] = true;
                                         classification['IsIncorrect'] = false;
@@ -54,6 +54,7 @@ export class TestResult {
                                 }
                                 data['Data'][r]['Correct'] = correct;
                                 data['Data'][r]['Incorrect'] = incorrect;
+                                data['Data'][r]['Expanded'] = false;
                             }
                             this.loading = false;
                             this.results = data['Data'];
