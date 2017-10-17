@@ -1,6 +1,9 @@
-import socket, sys
-try:
+import socket, sys, os
+if os.path.exists(sys.argv[2]+".csv") and os.path.getsize(sys.argv[2]+".csv") > 0:
+    print "\nWARNING: Outputfile " + sys.argv[2] + ".csv exists and is not empty. Aborting...\n"
+    exit()
 
+try:
     HOST = ''   # Symbolic name, meaning all available interfaces
     PORT = 8085 # Arbitrary non-privileged port
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -16,16 +19,16 @@ try:
 
     print "Bind success, listening on port {}".format(PORT)
 
-
-    s.sendto("GO", ('192.168.43.252', 8085))
-
-    file = open(str(sys.argv[1])+".csv", "w")
+    s.sendto("GO", (str(sys.argv[1]), 8085))
+    file = open(str(sys.argv[2])+".csv", "w")
     file.write("time;x;y;z;rx;ry;rz\n")
-    print "Opened outputfile: " + str(sys.argv[1]) + ".csv"
+    receivedData = False
+    print "Opened outputfile: " + str(sys.argv[2]) + ".csv"
     sys.stdout.write("Receiving data\n")
     totalTime = 0
     while 1:
         rawdata = s.recvfrom(13)
+        receivedData = True
         while rawdata == "":
             #conn, addr = s.accept()
             print "reconnected to {}".format(addr)
@@ -57,3 +60,6 @@ try:
 finally:
     print "\nClosing"
     s.close()
+    if receivedData == False:
+        os.remove(sys.argv[2] + ".csv")
+        print "Deleting empty outputfile since no data was captured"
