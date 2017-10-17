@@ -1,0 +1,48 @@
+<div id="dataset" class="wrapper">
+	<div class="main">
+		<h2 style="display: inline-block;">Test Result</h2>
+        <div *ngIf="loading" class="center upload-button">
+            <img class="loading-icon" src="assets/gfx/loading-icon.png"><br>
+            Loading
+        </div>
+        <div style="top: 60px;" class="separator-upper"></div>
+        <div class="list">
+            <div class="box">
+                <div *ngFor="let result of results">
+                    <div class="datalist-row">
+                    <div style="display: inline-block; cursor: pointer; width:50%;">
+                    Test {{ result.Id }}
+                    </div>
+                    <div style="float:right;">
+                        {{ result.Correct }} / {{ result.DataSetResults.length }}
+                        <img style="margin-left: 5px;" src="/assets/gfx/correct-icon.png" class="delete-icon">
+                    </div>
+                    <div class="box" style="margin-top: 10px;">
+                        <div *ngFor="let datasetResult of result.DataSetResults">
+                            <div class="datalist-row">
+                                <div style="display: inline-block; cursor: pointer; width:50%;">
+                                {{ datasetResult.DataSetName }}
+                                </div>
+                                <img *ngIf="datasetResult.IsCorrect" src="/assets/gfx/correct-icon.png" class="delete-icon">
+                                <img *ngIf="datasetResult.IsIncorrect" src="/assets/gfx/incorrect-icon.png" class="delete-icon">
+                                <div class="box"  style="margin-top: 10px;">
+                                    <div *ngFor="let classification of datasetResult.Classifications">
+                                        <div class="datalist-row">
+                                        <div style="display: inline-block; cursor: pointer; width:50%;">
+                                        {{ classification.LabelName }} : {{ classification.Confidence }}
+                                        </div>
+                                        <img *ngIf="classification.IsCorrect" src="/assets/gfx/correct-icon.png" class="delete-icon">
+                                        <img *ngIf="classification.IsIncorrect" src="/assets/gfx/incorrect-icon.png" class="delete-icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="bottom: 15px;" class="separator-lower"></div>
+	</div>
+</div>
