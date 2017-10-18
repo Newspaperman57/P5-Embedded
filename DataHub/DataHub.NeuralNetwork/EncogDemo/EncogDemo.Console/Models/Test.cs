@@ -8,11 +8,11 @@ namespace DataHub.Messages
     public class Test
     {
         public int Id { get; set; }
-        public string ModelName { get; set; }
-        public string ModelTypeName { get; set; }
         public IEnumerable<int> LabelIds { get; set; }
         public IEnumerable<int> TrainingSetIds { get; set; }
         public IEnumerable<int> TestSetIds { get; set; }
+        public IEnumerable<int> ResultIds { get; set; }
+        public double Accurracy { get; set; }
         public string Status { get; set; }
     }
 }

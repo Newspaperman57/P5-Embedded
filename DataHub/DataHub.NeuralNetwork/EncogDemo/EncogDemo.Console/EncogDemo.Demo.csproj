@@ -101,38 +101,8 @@
     <None Include="0210\mounting_device.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include=".csv" />
-    <None Include="1506329500_mortensKick2.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="1506330115_grundbergtest.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="9-21 Morten 5mål.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="9-21 Steffan 5mål.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="antonvsgrunberg.csv" />
-    <None Include="antonvsmorten.csv" />
     <None Include="App.config" />
-    <None Include="grunbergcsmorten.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="grunbergvsanton.csv" />
-    <None Include="grunbergvsmorten.csv" />
-    <None Include="grunbergvsmorten_rematch.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="model\network.eg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mortenvsanton.csv" />
-    <None Include="mortenvsgrunberg.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="mortenvsgrunberg_rematch.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="network.eg">

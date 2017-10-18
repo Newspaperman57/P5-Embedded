@@ -351,6 +351,7 @@ namespace EncogDemo.Demo
 
             TestResult result = new TestResult()
             {
+                ModelId = testInfo.ModelId,
                 DataSetResults = datasetResults.ToArray()
             };
 

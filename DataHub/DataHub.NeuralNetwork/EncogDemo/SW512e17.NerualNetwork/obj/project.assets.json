@@ -7045,11 +7045,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\morte\\Documents\\Visual Studio 2017\\Projects\\EncogDemo\\SW512e17.NerualNetwork\\SW512e17.NerualNetwork.csproj",
+      "projectUniqueName": "C:\\Users\\morte\\Documents\\Development\\P5\\P5-Embedded\\DataHub\\DataHub.NeuralNetwork\\EncogDemo\\SW512e17.NerualNetwork\\SW512e17.NerualNetwork.csproj",
       "projectName": "SW512e17.NerualNetwork",
-      "projectPath": "C:\\Users\\morte\\Documents\\Visual Studio 2017\\Projects\\EncogDemo\\SW512e17.NerualNetwork\\SW512e17.NerualNetwork.csproj",
+      "projectPath": "C:\\Users\\morte\\Documents\\Development\\P5\\P5-Embedded\\DataHub\\DataHub.NeuralNetwork\\EncogDemo\\SW512e17.NerualNetwork\\SW512e17.NerualNetwork.csproj",
       "packagesPath": "C:\\Users\\morte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\morte\\Documents\\Visual Studio 2017\\Projects\\EncogDemo\\SW512e17.NerualNetwork\\obj\\",
+      "outputPath": "C:\\Users\\morte\\Documents\\Development\\P5\\P5-Embedded\\DataHub\\DataHub.NeuralNetwork\\EncogDemo\\SW512e17.NerualNetwork\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\morte\\AppData\\Roaming\\NuGet\\NuGet.Config",

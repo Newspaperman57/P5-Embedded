@@ -25,3 +25,22 @@ C:\Users\morte\documents\visual studio 2017\Projects\EncogDemo\EncogDemo.Console
 C:\Users\morte\documents\visual studio 2017\Projects\EncogDemo\EncogDemo.Console\bin\Debug\1506330115_grundbergtest.csv
 C:\Users\morte\Documents\Visual Studio 2017\Projects\EncogDemo\EncogDemo.Console\bin\Debug\Newtonsoft.Json.dll
 C:\Users\morte\Documents\Visual Studio 2017\Projects\EncogDemo\EncogDemo.Console\bin\Debug\Newtonsoft.Json.xml
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\antonvsgrunberg.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\antonvsmorten.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\grunbergvsanton.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\grunbergvsmorten.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\mortenvsanton.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\mortenvsgrunberg.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\0210\mounting_device.csv
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\model\network.eg
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\network.eg
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\EncogDemo.Console.exe.config
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\EncogDemo.Console.exe
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\EncogDemo.Console.pdb
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\encog-core-cs.dll
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\Newtonsoft.Json.dll
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\bin\Debug\Newtonsoft.Json.xml
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\obj\Debug\EncogDemo.Demo.csprojResolveAssemblyReference.cache
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\obj\Debug\EncogDemo.Demo.csproj.CoreCompileInputs.cache
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\obj\Debug\EncogDemo.Console.exe
+C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.NeuralNetwork\EncogDemo\EncogDemo.Console\obj\Debug\EncogDemo.Console.pdb
