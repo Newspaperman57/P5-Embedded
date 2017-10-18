@@ -18,7 +18,7 @@ namespace DataHub.Models
         public Model()
         {
             this.Parameter = new HashSet<Parameter>();
-            this.Test = new HashSet<Test>();
+            this.TestResult = new HashSet<TestResult>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace DataHub.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parameter> Parameter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Test> Test { get; set; }
+        public virtual ICollection<TestResult> TestResult { get; set; }
     }
 }

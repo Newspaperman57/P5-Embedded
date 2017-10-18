@@ -13,7 +13,7 @@
                     <div style="display: inline-block; cursor: pointer; width:50%;" (click)="result.Expanded = !result.Expanded">
                         <img style="margin-right: 5px;float:left;" *ngIf="!result.Expanded" src="/assets/gfx/toggle-icon.png" class="delete-icon">
                         <img style="margin-right: 5px;float:left;" *ngIf="result.Expanded" src="/assets/gfx/toggle-expanded-icon.png" class="delete-icon">
-                        Test {{ result.Id }}
+                        {{ result.ModelName }} - {{ result.ModelTypeName }}
                     </div>
                     <div style="float:right;">
                         {{ result.Correct }} / {{ result.DataSetResults.length }}

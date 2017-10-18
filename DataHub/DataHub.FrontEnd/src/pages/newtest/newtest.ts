@@ -13,25 +13,16 @@ export class NewTest {
         private router: Router
     ) { }
 
-    public test = { ModelId: null, LabelIds: [], TestDataSetIds: [], TrainingDataSetIds: [] };
+    public test = { LabelIds: [], TestDataSetIds: [], TrainingDataSetIds: [] };
     private alldatalist = [];
     public loadingLabels = true;
     public loadingData = true;
     public datalist = [];
 
-    public models = [];
-
     public labels = [12];
     public selectedLabels = [];
 
     ngOnInit() {
-      this.service.fetchModels().then(
-          data => {
-              if(data['Success'])
-                this.models = data['Data'];
-          }
-      );
-
       this.service.fetchLabels().then(
           data => {
               this.loadingLabels = false;

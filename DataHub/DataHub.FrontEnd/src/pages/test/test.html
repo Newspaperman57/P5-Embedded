@@ -11,9 +11,6 @@
             <div class="box">
                 <div *ngFor="let test of tests" [routerLink]="['/test', test.Id]">
                     <div class="datalist-row">
-                    <div style="display: inline-block; cursor: pointer; width:30%;">
-                    {{ test.ModelName }} - {{ test.ModelTypeName }}
-                    </div>
                     <div style="display: inline-block; cursor: pointer; width:10%;word-break:keep-all;">
                     {{ test.LabelIds.length }} labels
                     </div>

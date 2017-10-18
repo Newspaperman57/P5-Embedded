@@ -79,7 +79,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ModelId" Type="int" Nullable="false" />
           <Property Name="Created" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="TestDataSet">
@@ -107,6 +106,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TestId" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModelId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Classific__DataS__73BA3083">
           <End Role="DataSet" Type="Self.DataSet" Multiplicity="1" />
@@ -216,18 +216,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Test__ModelId__5CD6CB2B">
-          <End Role="Model" Type="Self.Model" Multiplicity="1" />
-          <End Role="Test" Type="Self.Test" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Model">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Test">
-              <PropertyRef Name="ModelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TestDataS__DataS__6477ECF3">
           <End Role="DataSet" Type="Self.DataSet" Multiplicity="1" />
           <End Role="TestDataSet" Type="Self.TestDataSet" Multiplicity="*" />
@@ -273,6 +261,18 @@
             </Principal>
             <Dependent Role="TestLabel">
               <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestResul__Model__00200768">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="ModelId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -337,10 +337,6 @@
             <End Role="ModelType" EntitySet="ModelType" />
             <End Role="Property" EntitySet="Property" />
           </AssociationSet>
-          <AssociationSet Name="FK__Test__ModelId__5CD6CB2B" Association="Self.FK__Test__ModelId__5CD6CB2B">
-            <End Role="Model" EntitySet="Model" />
-            <End Role="Test" EntitySet="Test" />
-          </AssociationSet>
           <AssociationSet Name="FK__TestDataS__DataS__6477ECF3" Association="Self.FK__TestDataS__DataS__6477ECF3">
             <End Role="DataSet" EntitySet="DataSet" />
             <End Role="TestDataSet" EntitySet="TestDataSet" />
@@ -356,6 +352,10 @@
           <AssociationSet Name="FK__TestLabel__TestI__5FB337D6" Association="Self.FK__TestLabel__TestI__5FB337D6">
             <End Role="Test" EntitySet="Test" />
             <End Role="TestLabel" EntitySet="TestLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestResul__Model__00200768" Association="Self.FK__TestResul__Model__00200768">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="TestResult" EntitySet="TestResult" />
           </AssociationSet>
           <AssociationSet Name="FK__TestResul__TestI__6EF57B66" Association="Self.FK__TestResul__TestI__6EF57B66">
             <End Role="Test" EntitySet="Test" />
@@ -422,7 +422,7 @@
           <Property Name="ModelTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ModelType" Relationship="Self.FK__Model__ModelType__5629CD9C" FromRole="Model" ToRole="ModelType" />
           <NavigationProperty Name="Parameter" Relationship="Self.FK__Parameter__Model__59063A47" FromRole="Model" ToRole="Parameter" />
-          <NavigationProperty Name="Test" Relationship="Self.FK__Test__ModelId__5CD6CB2B" FromRole="Model" ToRole="Test" />
+          <NavigationProperty Name="TestResult" Relationship="Self.FK__TestResul__Model__00200768" FromRole="Model" ToRole="TestResult" />
         </EntityType>
         <EntityType Name="ModelType">
           <Key>
@@ -461,9 +461,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModelId" Type="Int32" Nullable="false" />
           <Property Name="Created" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Model" Relationship="Self.FK__Test__ModelId__5CD6CB2B" FromRole="Test" ToRole="Model" />
           <NavigationProperty Name="TestDataSet" Relationship="Self.FK__TestDataS__TestI__6383C8BA" FromRole="Test" ToRole="TestDataSet" />
           <NavigationProperty Name="TestLabel" Relationship="Self.FK__TestLabel__TestI__5FB337D6" FromRole="Test" ToRole="TestLabel" />
           <NavigationProperty Name="TestResult" Relationship="Self.FK__TestResul__TestI__6EF57B66" FromRole="Test" ToRole="TestResult" />
@@ -497,7 +495,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TestId" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Classification" Relationship="Self.FK__Classific__TestR__7F2BE32F" FromRole="TestResult" ToRole="Classification" />
+          <NavigationProperty Name="Model" Relationship="Self.FK__TestResul__Model__00200768" FromRole="TestResult" ToRole="Model" />
           <NavigationProperty Name="Test" Relationship="Self.FK__TestResul__TestI__6EF57B66" FromRole="TestResult" ToRole="Test" />
         </EntityType>
         <Association Name="FK__Classific__DataS__73BA3083">
@@ -608,14 +608,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Test__ModelId__5CD6CB2B">
+        <Association Name="FK__TestResul__Model__00200768">
           <End Role="Model" Type="Self.Model" Multiplicity="1" />
-          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Model">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Test">
+            <Dependent Role="TestResult">
               <PropertyRef Name="ModelId" />
             </Dependent>
           </ReferentialConstraint>
@@ -729,9 +729,9 @@
             <End Role="Model" EntitySet="Model" />
             <End Role="Parameter" EntitySet="Parameter" />
           </AssociationSet>
-          <AssociationSet Name="FK__Test__ModelId__5CD6CB2B" Association="Self.FK__Test__ModelId__5CD6CB2B">
+          <AssociationSet Name="FK__TestResul__Model__00200768" Association="Self.FK__TestResul__Model__00200768">
             <End Role="Model" EntitySet="Model" />
-            <End Role="Test" EntitySet="Test" />
+            <End Role="TestResult" EntitySet="TestResult" />
           </AssociationSet>
           <AssociationSet Name="FK__Property__settin__534D60F1" Association="Self.FK__Property__settin__534D60F1">
             <End Role="ModelType" EntitySet="ModelType" />
@@ -841,7 +841,6 @@
             <EntityTypeMapping TypeName="DataHub.Models.Test">
               <MappingFragment StoreEntitySet="Test">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -872,6 +871,7 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TestId" ColumnName="TestId" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

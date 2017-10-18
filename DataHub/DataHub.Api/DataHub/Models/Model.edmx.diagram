@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b8c0c8177de04117ad4405d3bf3d16ff" Name="Diagram1">
-        <EntityTypeShape EntityType="DataHub.Models.Classification" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.DataSet" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.Label" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.Mapping" Width="1.5" PointX="10.5" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.Model" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.ModelType" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.Parameter" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.Property" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.Test" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.TestDataSet" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.TestLabel" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataHub.Models.TestResult" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+      <Diagram DiagramId="58ad0876aea6470ba1f85d298970a201" Name="Diagram1">
+        <EntityTypeShape EntityType="DataHub.Models.Classification" Width="1.5" PointX="8.875" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.DataSet" Width="1.5" PointX="7" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.Label" Width="1.5" PointX="11" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.Mapping" Width="1.5" PointX="7" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.Model" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.ModelType" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.Parameter" Width="1.5" PointX="3.875" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.Property" Width="1.5" PointX="1.625" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.Test" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.TestDataSet" Width="1.5" PointX="4.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.TestLabel" Width="1.5" PointX="8.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataHub.Models.TestResult" Width="1.5" PointX="5.75" PointY="12.25" IsExpanded="true" />
         <AssociationConnector Association="DataHub.Models.FK__Classific__DataS__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__Classific__Label__72C60C4A" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__Classific__TestR__7F2BE32F" ManuallyRouted="false" />
@@ -26,7 +26,7 @@
         <AssociationConnector Association="DataHub.Models.FK__TestLabel__Label__60A75C0F" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__Model__ModelType__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__Parameter__Model__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="DataHub.Models.FK__Test__ModelId__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="DataHub.Models.FK__TestResul__Model__00200768" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__Property__settin__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__Parameter__Prope__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="DataHub.Models.FK__TestDataS__TestI__6383C8BA" ManuallyRouted="false" />

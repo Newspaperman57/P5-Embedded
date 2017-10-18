@@ -20,8 +20,6 @@ namespace DataHub.Controllers
             return new Response<Messages.Test[]>() { Data = new Entities().Test.Select(t => new Messages.Test()
             {
                 Id = t.Id,
-                ModelName = t.Model.Name,
-                ModelTypeName = t.Model.ModelType.Name,
                 LabelIds = t.TestLabel.Select(l => l.LabelId),
                 TestSetIds = t.TestDataSet.Where(d => d.IsTestSet == 1).Select(d => d.DataSetId),
                 TrainingSetIds = t.TestDataSet.Where(d => d.IsTraningSet == 1).Select(d => d.DataSetId),
@@ -41,8 +39,6 @@ namespace DataHub.Controllers
                 Data = new Entities().Test.Where(t => t.Id == id).Select(t => new Messages.Test()
                 {
                     Id = t.Id,
-                    ModelName = t.Model.Name,
-                    ModelTypeName = t.Model.ModelType.Name,
                     LabelIds = t.TestLabel.Select(l => l.LabelId),
                     TestSetIds = t.TestDataSet.Where(d => d.IsTestSet == 1).Select(d => d.DataSetId),
                     TrainingSetIds = t.TestDataSet.Where(d => d.IsTraningSet == 1).Select(d => d.DataSetId),
@@ -57,7 +53,6 @@ namespace DataHub.Controllers
         {
             var test = new Models.Test()
             {
-                ModelId = newTest.ModelId,
                 TestLabel = newTest.LabelIds.Select(l => new Models.TestLabel()
                 {
                     LabelId = l
@@ -114,6 +109,7 @@ namespace DataHub.Controllers
 
                 var added = db.TestResult.Add(new Models.TestResult()
                 {
+                    ModelId = result.ModelId,
                     TestId = test.Id,
                     CreatedDate = DateTime.Now,
                     Classification = classifications
@@ -144,8 +140,10 @@ namespace DataHub.Controllers
                     Data = test.TestResult.Select(t => new Messages.TestResult()
                     {
                         Id = t.Id,
-                        ModelName = t.Test.Model.Name,
-                        ModelTypeName = t.Test.Model.ModelType.Name,
+                        ModelId = t.ModelId,
+                        ModelName = t.Model.Name,
+                        ModelTypeId = t.Model.ModelTypeId,
+                        ModelTypeName = t.Model.ModelType.Name,
                         DataSetResults = t.Classification.GroupBy(c => c.DataSetId).Select(g => new Messages.DataSetResult()
                         {
                             LabelIds = g.First().DataSet.Mapping.Select(m => m.LabelId).ToArray(),
@@ -176,12 +174,15 @@ namespace DataHub.Controllers
                 if (modelType == null)
                     return new ErrorResponse<TestInfo>() { ErrorCode = ErrorCode.InvalidId };
 
-                var model = modelType.Model.OrderByDescending(t => t.Id).First();
+                var model = modelType.Model.OrderBy(t => t.TestResult.Count).FirstOrDefault();
 
                 if (model == null)
                     return new ErrorResponse<TestInfo>() { ErrorCode = ErrorCode.NoTestsAvailable };
 
-                var test = model.Test.OrderByDescending(t => t.Id).First();
+                var test = db.Test.OrderBy(t => t.TestResult.Where(r => r.ModelId == model.Id).Count()).FirstOrDefault();
+
+                if (test == null)
+                    return new Response<TestInfo>() { ErrorCode = ErrorCode.NoTestsAvailable };
 
                 return new Response<TestInfo>()
                 {
@@ -189,6 +190,8 @@ namespace DataHub.Controllers
                     {
                         Id = test.Id,
                         ModelId = model.Id,
+                        ModelName = model.Name,
+                        ModelTypeName = model.ModelType.Name,
                         ModelTypeId = model.ModelTypeId,
                         Labels = test.TestLabel.Select(t => new Messages.Label() { Id = t.LabelId, Name = t.Label.Name }).ToArray(),
                         Parameters = model.Parameter.Select(p => new Messages.Parameter()

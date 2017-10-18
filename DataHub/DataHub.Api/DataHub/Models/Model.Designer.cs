@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\morte\Documents\Development\P5-EmbeddedSystems\DataHub\DataHub\Models\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\morte\Documents\Development\P5\P5-Embedded\DataHub\DataHub.Api\DataHub\Models\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
